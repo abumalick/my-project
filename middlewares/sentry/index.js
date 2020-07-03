@@ -11,7 +11,9 @@ module.exports = (strapi) => {
     initialize() {
       strapi.app.use(async (ctx, next) => {
         try {
+          console.log("Waiting for next");
           await next();
+          console.log("NEXT passed");
         } catch (error) {
           console.log("SENDING EXCEPTION TO SENTRY");
           Sentry.captureException(error);
